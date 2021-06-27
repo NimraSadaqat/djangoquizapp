@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block scripts %}
+{% endblock scripts %}
+
+{% block title %}
+Result
+{% endblock title %}
+
+{% block content %}
+<div class="container mt-5 mb-5 pt-3 pb-3" style="background-color: #F3F4F7;">
+<div class="list-group list-group-flush">
+<h1>{{user.username}}</h1>
+{% if not object_list %}
+<h4>No result found</h4>
+{% else %}
+
+  {% for obj in object_list %}
+  <div class="list-group-item">
+    <h2>{{obj.test_name}}</h2>
+    <h4>Score: {{obj.score}}</h4>
+    <p>Submission date: {{obj.submitted_date_time}}</p>
+    <br>
+  </div>
+  {% endfor %}
+{% endif %}
+</div>
+</div>
+{% endblock content %}

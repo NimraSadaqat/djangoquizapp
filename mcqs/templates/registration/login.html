@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5 mb-5" style="background-color: #F3F4F7;">
+  <h1 class="text-center">LOGIN</h1>
+  <hr>
+  <div class="form-group">
+{% if form.errors %}
+<p>Invalid username or password. Please try again.</p>
+{% endif %}
+
+{% if next %}
+    {% if user.is_authenticated %}
+    <p>Your account doesn't have access to this page. To proceed,
+    please login with an account that has access.</p>
+    {% else %}
+    <p>Please login to see this page.</p>
+    {% endif %}
+{% endif %}
+
+<!-- <form method="post" action="{% url 'login' %}">
+{% csrf_token %}
+<table>
+<tr>
+    <td>{{ form.username.label_tag }}</td>
+    <td>{{ form.username }}</td>
+</tr>
+<tr>
+    <td>{{ form.password.label_tag }}</td>
+    <td>{{ form.password }}</td>
+</tr>
+</table>
+
+<input type="submit" value="login">
+<input type="hidden" name="next" value="{{ next }}"> -->
+<!-- </form> -->
+<form method="post" action="{% url 'login' %}">
+{% csrf_token %}
+  <div class="row mb-3">
+    <label class="col-sm-2 col-form-label">{{ form.username.label_tag }}</label>
+    <div class="col-sm-10">
+      <input type="text"  class="form-control" name="username" autofocus="" autocapitalize="none" autocomplete="username" maxlength="150" required="" id="id_username">
+
+      <!-- {{ form.username }} -->
+    </div>
+  </div>
+  <div class="row mb-3">
+    <label class="col-sm-2 col-form-label">{{ form.password.label_tag }}</label>
+    <div class="col-sm-10">
+    <input type="password" class="form-control" name="password" autocomplete="current-password" required="" id="id_password">
+      <!-- {{ form.password }} -->
+    </div>
+  </div>
+  <div class="row">
+    <div class="col text-center">
+      <input type="submit" value="Sign In" class="btn btn-primary mb-3">
+      <input type="hidden" name="next" value="{{ next }}">
+    </div>
+  </div>
+
+</form>
+</div>
+</div>
+{% endblock %}

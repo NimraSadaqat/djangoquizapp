@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5 mb-5" style="background-color: #F3F4F7;">
+  <h1 class="text-center">Confirm Delete Test</h1>
+  <hr>
+  <div class="form-group">
+  <form action="" method="post">
+    {% csrf_token %}
+    <p>Are you sure you want to delete {{ object.name }}: {{ object.topic }}?</p>
+    <input class='btn btn-danger mb-3' type="submit" value="Confirm" />
+    <a class="btn btn-primary mb-3" href="{% url 'mcqs:main-view' %}">Go Back</a>
+  </form>
+</div>
+{% endblock %}

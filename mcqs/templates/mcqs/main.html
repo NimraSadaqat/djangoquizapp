@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% load static %}
+
+<link rel="stylesheet" href={% static 'mcqs/style.css' %}>
+
+{% block scripts %}
+    <script src="{% static 'mcqs/main.js' %}" defer></script>
+{% endblock scripts %}
+
+{% block title %}
+home
+{% endblock title %}
+
+{% block content %}
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Faran Coaching Center</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="modal-body-confirm">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>
+        <button type="button" id="start-button" class="btn btn-primary">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container" id="intro">
+  <h1 class="mt-5">Faran Coaching Centre</h1>
+  <p class="lead">Pin a footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS.</p>
+  <p>Use <a href="../examples/sticky-footer-navbar/">the sticky footer with a fixed navbar</a> if need be, too.</p>
+</div>
+<div class="container mycontainer mb-5" style="background-color: #F3F4F7;">
+<div class="row">
+  <div class="col text-center">
+    <h1>Test List</h1>
+  </div>
+</div>
+<hr>
+{% if not object_list %}
+<h4>No Test found</h4>
+{% else %}
+  {% if user.is_superuser %}
+  {% for obj in object_list %}
+  <div class="list-group">
+    <div class="list-group-item">
+      <div class="row">
+        <div class="col">
+          <a>{{obj.name}}: {{obj.topic}}</a>
+        </div>
+        <div class="col text-end">
+          <a class="btn btn-primary btn-sm" href="{% url 'mcqs:test_edit' pk=obj.pk %}">Edit Test</a>
+          <a class="btn btn-danger btn-sm" href="{% url 'mcqs:test_delete' pk=obj.pk %}">Delete Test</a>
+        </div>
+      </div>
+    </div>
+      <br>
+  </div>
+  {% endfor %}
+
+  {% else %}
+
+    {% for obj in object_list %}
+    <div class="list-group">
+      <a
+        class="list-group-item list-group-item-action modal-button"
+        data-pk="{{obj.pk}}"
+        data-test="{{obj.name}}"
+        data-topic="{{obj.topic}}"
+        data-questions="{{obj.number_of_questions}}"
+        data-time="{{obj.time}}"
+        data-pass = "{{obj.passing_score}}"
+        data-bs-toggle="modal"
+        data-bs-target="#staticBackdrop">
+        {{obj.name}}: {{obj.topic}}
+      </a><br>
+    {% endfor %}
+  {% endif %}
+
+{% endif %}
+</div>
+{% endblock content %}
+</div>

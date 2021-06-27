@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block scripts %}
+    <script src="{% static 'mcqs/test.js' %}" defer></script>
+{% endblock scripts %}
+
+{% block title %}
+{{obj.name}}
+{% endblock title %}
+
+{% block content %}
+{% if text != none %}
+<div class="container mt-5 mb-5" style="background-color: #F3F4F7;">
+    <p><b>{{text}}</b></p>
+    <a class="btn btn-primary mt-3 mb-3" href="{% url 'mcqs:user-result-view' %}">View Result</a>
+    <!-- <button type="submit" class="btn btn-primary mt-3 mb-3">View Result</button> -->
+  </div>
+{% else %}
+<div class="container mt-5 mb-5" style="background-color: #F3F4F7;">
+<div class="row">
+  <div class="col">
+    <h3>{{obj.name}}: {{obj.topic}}</h3>
+    <p>Score to pass: {{obj.passing_score}}%</p>
+  </div>
+  <div class="col text-end" id="timer-box">
+  </div>
+</div>
+
+<form id="quiz-form" class="mt-3 mb-3">
+    {% csrf_token %}
+    <div id="quiz-box"></div>
+    <button type="submit" class="btn btn-primary mt-3 mb-3">Submit</button>
+</form>
+<div id="score-box"></div>
+<div id="result-box"></div>
+<a href="{% url 'mcqs:main-view' %}" class="btn btn-primary mb-3" id="go_back_btn">Go Back</a>
+</div>
+{% endif %}
+
+{% endblock content %}

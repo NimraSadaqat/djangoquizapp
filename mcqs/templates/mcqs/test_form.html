@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5 mb-5" style="background-color: #F3F4F7;">
+    <h1 class="text-center">Create New Test</h1>
+    <hr>
+    <div class="form-group">
+    <form method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit" class="save btn btn-primary mb-3">Save</button>
+    </form>
+    </div>
+</div>
+{% endblock %}
