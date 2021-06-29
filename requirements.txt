@@ -11,37 +11,37 @@ async-generator==1.10
 atomicwrites==1.4.0
 attrs==20.3.0
 autopep8==1.5.6
-Babel @ file:///tmp/build/80754af9/babel_1607110387436/work
-backcall @ file:///home/ktietz/src/ci/backcall_1611930011877/work
-backports.shutil-get-terminal-size @ file:///tmp/build/80754af9/backports.shutil_get_terminal_size_1608222128777/work
-bcrypt @ file:///C:/ci/bcrypt_1607022693089/work
-beautifulsoup4 @ file:///home/linux1/recipes/ci/beautifulsoup4_1610988766420/work
-bitarray @ file:///C:/ci/bitarray_1618435047642/work
+Babel==2.9.0
+backcall==0.2.0
+backports.shutil-get-terminal-size==1.0.0
+bcrypt==3.2.0
+beautifulsoup4==4.9.3
+bitarray==1.9.2
 bkcharts==0.2
 black==19.10b0
-bleach @ file:///tmp/build/80754af9/bleach_1612211392645/work
-bokeh @ file:///C:/ci/bokeh_1620784091513/work
+bleach==3.3.0
+bokeh==2.3.2
 boto==2.49.0
-Bottleneck @ file:///C:/ci/bottleneck_1607557040328/work
+Bottleneck==1.3.2
 brotlipy==0.7.0
 certifi==2020.12.5
-cffi @ file:///C:/ci/cffi_1613247431367/work
-chardet @ file:///C:/ci/chardet_1607706937985/work
-click @ file:///home/linux1/recipes/ci/click_1610990599742/work
-cloudpickle @ file:///tmp/build/80754af9/cloudpickle_1598884132938/work
+cffi==1.14.5
+chardet==4.0.0
+click==7.1.2
+cloudpickle==1.6.0
 clyent==1.2.2
-colorama @ file:///tmp/build/80754af9/colorama_1607707115595/work
+colorama==0.4.4
 comtypes==1.1.9
 contextlib2==0.6.0.post1
-cryptography @ file:///C:/ci/cryptography_1616769504165/work
+cryptography==3.4.7
 cycler==0.10.0
-Cython @ file:///C:/ci/cython_1618435342791/work
+Cython==0.29.23
 cytoolz==0.11.0
-dask @ file:///tmp/build/80754af9/dask-core_1617390489108/work
-decorator @ file:///tmp/build/80754af9/decorator_1617916966915/work
-defusedxml @ file:///tmp/build/80754af9/defusedxml_1615228127516/work
-diff-match-patch @ file:///tmp/build/80754af9/diff-match-patch_1594828741838/work
-distributed @ file:///C:/ci/distributed_1617384292756/work
+dask==2021.4.0
+decorator==5.0.6
+defusedxml==0.7.1
+diff-match-patch==20200713
+distributed==2021.4.0
 dj-database-url==0.5.0
 Django==3.0.3
 django-heroku==0.3.1
