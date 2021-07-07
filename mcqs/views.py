@@ -4,7 +4,8 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView
 from django.http import JsonResponse
 from questions.models import Question, Answer
-from results.models import Result
+from results.models import Result, Result_detail
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .models import Test
@@ -36,7 +37,6 @@ class CreateTestView(UserPassesTestMixin,CreateView):
             form.instance.created_by = self.request.user
             self.object = form.save()
         return redirect('mcqs:test_upload-view', pk=self.object.pk)
-
 
 class UpdateTestView(UserPassesTestMixin,UpdateView):
 
@@ -79,6 +79,32 @@ class UserResultListView(LoginRequiredMixin,ListView):
     def get_queryset(self):
         return Result.objects.filter(user=self.request.user)
 
+class Result_detailListView(LoginRequiredMixin,ListView):
+    model = Result_detail
+    template_name = 'mcqs/result_detail.html'
+
+    def get_queryset(self, *args, **kwargs):
+        test = self.kwargs['test_name'].split('-')
+        test_name = test[0]
+        test_topic = test[1]
+        test = Test.objects.get(name=test_name, topic=test_topic)
+        return Result_detail.objects.filter(user=self.request.user, test_name=test.pk)
+
+class student_Result_detailListView(UserPassesTestMixin,ListView):
+    model = Result_detail
+    template_name = 'mcqs/result_detail.html'
+
+    def test_func(self):
+       return self.request.user.is_superuser
+
+    def get_queryset(self, *args, **kwargs):
+        user_name = self.kwargs['user_name']
+        user = User.objects.get(username=user_name)
+        test = self.kwargs['test_name'].split('-')
+        test_name = test[0]
+        test_topic = test[1]
+        test = Test.objects.get(name=test_name, topic=test_topic)
+        return Result_detail.objects.filter(user=user.pk, test_name=test.pk)
 #######################################
 ## Functions that require a pk match ##
 #######################################
@@ -86,8 +112,9 @@ class UserResultListView(LoginRequiredMixin,ListView):
 def test_view(request, pk):
     test = Test.objects.get(pk=pk)
     if Result.objects.filter(user=request.user, test_name=test).exists():
-            return render(request, 'mcqs/test.html',{'text':'You have already submit the test'})
-    return render(request, 'mcqs/test.html',{'obj':test})
+            return render(request, 'mcqs/test.html',{'text':'You have already submit the test',
+                                                    'test_name':test})
+    return render(request, 'mcqs/test.html',{'object_list':test})
 
 @login_required
 def save_test_view(request, pk):
@@ -127,8 +154,14 @@ def save_test_view(request, pk):
                             correct_answer = a.text
 
                 results.append({str(q): {'correct_answer': correct_answer, 'answered': a_selected}})
+                Result_detail.objects.create(test_name=test, user=user, question=q, selected_answer=a_selected, correct_answer=correct_answer)
             else:
-                results.append({str(q): 'not answered'})
+                question_answers = Answer.objects.filter(question=q)
+                for a in question_answers:
+                    if a.correct:
+                        correct_answer = a.text
+                results.append({str(q): {'correct_answer': correct_answer, 'answered': 'not answered'}})
+                Result_detail.objects.create(test_name=test, user=user, question=q, selected_answer=a_selected, correct_answer=correct_answer)
 
         score_ = score * multiplier
         Result.objects.create(test_name=test, user=user, score=score_)

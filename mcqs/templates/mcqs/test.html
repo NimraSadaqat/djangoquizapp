@@ -12,9 +12,9 @@
 {% block content %}
 {% if text != none %}
 <div class="container mt-5 mb-5" style="background-color: #F3F4F7;">
+    <h3>{{test_name}}</h3>
     <p><b>{{text}}</b></p>
-    <a class="btn btn-primary mt-3 mb-3" href="{% url 'mcqs:user-result-view' %}">View Result</a>
-    <!-- <button type="submit" class="btn btn-primary mt-3 mb-3">View Result</button> -->
+      <a href="{% url 'mcqs:result-detail' test_name=test_name %}" class="btn btn-primary mb-3">View Details</a>
   </div>
 {% else %}
 <div class="container mt-5 mb-5" style="background-color: #F3F4F7;">

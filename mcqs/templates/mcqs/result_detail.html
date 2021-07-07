@@ -5,23 +5,27 @@
 {% endblock scripts %}
 
 {% block title %}
-Result
+Result Details
 {% endblock title %}
 
 {% block content %}
 <div class="container mt-5 mb-5 pt-3 pb-3" style="background-color: #F3F4F7;">
 <div class="list-group list-group-flush">
-  {% if not object_list %}
-  <h4>No result found</h4>
-  {% else %}
-  {% for obj in object_list %}
 
+  {% if not object_list %}
+  <h4>No result details found</h4>
+  {% else %}
+  <!-- will run loop only once -->
+  {% for account in object_list|slice:":1" %}
+  <h2>{{account.test_name}}</h2>
+  <h3>User: {{account.user}}</h3>
+  {% endfor %}
+  {% for obj in object_list %}
   <div class="list-group-item">
-    <h2>{{obj.test_name}}</h2>
-    <h4>User: {{obj.user}}</h4>
-    <h4>Score: {{obj.score}}</h4>
-    <p>Submission date: {{obj.submitted_date_time}}</p>
-    <a href="{% url 'mcqs:steudent_result_view' user_name=obj.user test_name=obj.test_name %}" class="btn btn-primary mb-3">View Details</a>
+    <h5>Question: {{obj.question}}</h5>
+    <p>Selected Answer: {{obj.selected_answer}}
+      <br>
+      Correct Answer: {{obj.correct_answer}}</p>
     <br>
   </div>
   {% endfor %}

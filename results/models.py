@@ -13,3 +13,10 @@ class Result(models.Model):
 
     def __str__(self):
         return str(self.pk)
+
+class Result_detail(models.Model):
+    test_name = models.ForeignKey(Test, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    question = models.CharField(max_length=500)
+    selected_answer = models.CharField(max_length=300)
+    correct_answer = models.CharField(max_length=300)
