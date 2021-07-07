@@ -114,7 +114,7 @@ def test_view(request, pk):
     if Result.objects.filter(user=request.user, test_name=test).exists():
             return render(request, 'mcqs/test.html',{'text':'You have already submit the test',
                                                     'test_name':test})
-    return render(request, 'mcqs/test.html',{'object_list':test})
+    return render(request, 'mcqs/test.html',{'obj':test})
 
 @login_required
 def save_test_view(request, pk):
