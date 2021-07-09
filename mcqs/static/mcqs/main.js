@@ -23,6 +23,7 @@ modalBtns.forEach(modalBtn=> modalBtn.addEventListener('click', ()=>{
                 <li>Minuimum Score to Pass: <b>${scoreToPass}%</b></li>
                 <li>Time: <b>${time} Min</b></li>
             </ul>
+        <!-- <div class='h6 mb-3'>After starting the test do not try to reload or close the page, doing this action will submit your test</div> -->
         </div>
     `
 

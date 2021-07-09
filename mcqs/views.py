@@ -79,16 +79,16 @@ class UserResultListView(LoginRequiredMixin,ListView):
     def get_queryset(self):
         return Result.objects.filter(user=self.request.user)
 
-class Result_detailListView(LoginRequiredMixin,ListView):
-    model = Result_detail
-    template_name = 'mcqs/result_detail.html'
-
-    def get_queryset(self, *args, **kwargs):
-        test = self.kwargs['test_name'].split('-')
-        test_name = test[0]
-        test_topic = test[1]
-        test = Test.objects.get(name=test_name, topic=test_topic)
-        return Result_detail.objects.filter(user=self.request.user, test_name=test.pk)
+# class Result_detailListView(LoginRequiredMixin,ListView):
+#     model = Result_detail
+#     template_name = 'mcqs/result_detail.html'
+#
+#     def get_queryset(self, *args, **kwargs):
+#         test = self.kwargs['test_name'].split('-')
+#         test_name = test[0]
+#         test_topic = test[1]
+#         test = Test.objects.get(name=test_name, topic=test_topic)
+#         return Result_detail.objects.filter(user=self.request.user, test_name=test.pk)
 
 class student_Result_detailListView(UserPassesTestMixin,ListView):
     model = Result_detail

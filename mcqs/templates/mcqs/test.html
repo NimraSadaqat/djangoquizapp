@@ -12,9 +12,15 @@
 {% block content %}
 {% if text != none %}
 <div class="container mt-5 mb-5" style="background-color: #F3F4F7;">
+  <!-- <script type="text/javascript">
+    window.onload = function() {
+    }
+    window.addEventListener('unload', function(event) {
+          });
+  </script> -->
     <h3>{{test_name}}</h3>
     <p><b>{{text}}</b></p>
-      <a href="{% url 'mcqs:result-detail' test_name=test_name %}" class="btn btn-primary mb-3">View Details</a>
+      <a href="{% url 'mcqs:user_results' %}" class="btn btn-primary mb-3">View Result</a>
   </div>
 {% else %}
 <div class="container mt-5 mb-5" style="background-color: #F3F4F7;">

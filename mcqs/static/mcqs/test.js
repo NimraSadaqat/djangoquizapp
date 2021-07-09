@@ -1,3 +1,25 @@
+// window.addEventListener('beforeunload', function (e) {
+//   // Cancel the event
+//   e.preventDefault(); // If you prevent default behavior in Mozilla Firefox prompt will always be shown
+//   // Chrome requires returnValue to be set
+//   e.returnValue = 'Test will be submitted if you reload the page';
+//   // set sessions value on reloading of page
+//   sessionStorage.setItem("reloading","reloading")
+//   console.log('onbeforeunload');
+// });
+// window.onload = function() {
+//     var reloading = sessionStorage.getItem("reloading");
+//     if (reloading) {
+//         sessionStorage.removeItem("reloading");
+//         sendData(); //will submit test if user reloads the page
+//     }
+//     console.log(reloading);
+// }
+//
+// window.addEventListener('unload', function(event) {
+//         sendData();
+//         console.log('Beware from closing the tab');
+//       });
 console.log("Hello test")
 const url = window.location.href
 
