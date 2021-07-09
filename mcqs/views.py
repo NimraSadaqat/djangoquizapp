@@ -11,6 +11,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .models import Test
 from .forms import TestForm, UploadFileForm
 from .functions import handle_uploaded_file
+import random
 
 from django.views.generic import (TemplateView,ListView,
                                   DetailView,CreateView,
@@ -180,6 +181,7 @@ def test_data_view(request, pk):
         answers = []
         for a in q.get_answers():
             answers.append(a.text)
+        random.shuffle(answers)
         questions.append({str(q): answers})
     return JsonResponse({
         'data': questions,

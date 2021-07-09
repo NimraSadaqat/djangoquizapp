@@ -20,5 +20,8 @@ def handle_uploaded_file(f,pk):
         print('question:',question)
         for count in range(1,5):
             answer = question_set[count]
-            answer_instance = Answer.objects.create(question=Question.objects.get(text=question, test=test_pk), text=answer)
+            if count == 1:
+                answer_instance = Answer.objects.create(question=Question.objects.get(text=question, test=test_pk), text=answer, correct=True)
+            else:
+                answer_instance = Answer.objects.create(question=Question.objects.get(text=question, test=test_pk), text=answer)
             answer_instance.save()
