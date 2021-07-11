@@ -171,5 +171,6 @@ quizForm.addEventListener('submit', e=>{
 
     sendData()
     timerBox.innerHTML = "<b>00:00</b>"
+    e.disabled = true
     clearInterval(timer) //set timer to 0 after submission
 })
