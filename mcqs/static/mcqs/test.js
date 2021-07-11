@@ -166,9 +166,9 @@ const sendData = () => {
         })
 }
 
-quizForm.getElementById("idOfButton").addEventListener('submit', e=>{
+document.getElementById("idOfButton").addEventListener('click', function(e){
     e.preventDefault()
-    e.disabled = true;
+    e.disabled = true
     sendData()
     timerBox.innerHTML = "<b>00:00</b>"
 
