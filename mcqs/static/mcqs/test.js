@@ -175,9 +175,18 @@ quizForm.getElementById("idOfButton").addEventListener('submit', e=>{
     clearInterval(timer) //set timer to 0 after submission
 })
 
+<<<<<<< HEAD
 // document.getElementById("idOfButton").onclick = function() {
 //     //disable
 //     this.disabled = true;
 //
 //     //do some validation stuff
 // }
+=======
+document.getElementById("idOfButton").onclick = function() {
+    //disable
+    this.disabled = true;
+
+    //do some validation stuff
+}
+>>>>>>> f4f4138bef290e74c7bdf994cc15c5b50d160f04
