@@ -166,12 +166,11 @@ const sendData = () => {
         })
 }
 
-document.getElementById("idOfButton").addEventListener('click', function(e){
+quizForm.addEventListener('submit', e=>{
     e.preventDefault()
-    e.disabled = true
+    document.getElementById("idOfButton").disabled = true
     sendData()
     timerBox.innerHTML = "<b>00:00</b>"
-
     clearInterval(timer) //set timer to 0 after submission
 })
 

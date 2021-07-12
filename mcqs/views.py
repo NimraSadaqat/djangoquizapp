@@ -164,7 +164,7 @@ def save_test_view(request, pk):
                 results.append({str(q): {'correct_answer': correct_answer, 'answered': 'not answered'}})
                 Result_detail.objects.create(test_name=test, user=user, question=q, selected_answer=a_selected, correct_answer=correct_answer)
 
-        score_ = score * multiplier
+        score_ = round(score * multiplier,2)
         Result.objects.create(test_name=test, user=user, score=score_)
 
         if score_ >= test.passing_score:
