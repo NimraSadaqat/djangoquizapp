@@ -12,7 +12,7 @@ class Result(models.Model):
     score = models.FloatField()
 
     def __str__(self):
-        return str(self.pk)
+        return f"{self.test_name}-{self.user}"
 
 class Result_detail(models.Model):
     test_name = models.ForeignKey(Test, on_delete=models.CASCADE)
@@ -20,3 +20,6 @@ class Result_detail(models.Model):
     question = models.CharField(max_length=500)
     selected_answer = models.CharField(max_length=300)
     correct_answer = models.CharField(max_length=300)
+
+    def __str__(self):
+        return f"{self.test_name}-{self.user}-{self.question}"
