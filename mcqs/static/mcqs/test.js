@@ -84,6 +84,9 @@ $.ajax({
                         <b>${question}</b>
                     </div>
                 `
+                if (question.includes('"')) {
+                  question = question.replaceAll('"', '\\"')
+                }
                 answers.forEach(answer=>{
                    quizBox.innerHTML += `
                        <div>
